@@ -11,14 +11,14 @@ use Elastica\Exception\InvalidException;
  *
  * @author Nicolas Ruflin <spam@ruflin.com>
  */
-class ResultSet implements \Iterator, \Countable, \ArrayAccess
+class SearchResultSet implements \Iterator, \Countable, \ArrayAccess
 {
     /**
      * Class for the static create method to use.
      *
      * @var string
      */
-    protected static $_class = 'Elastica\\ResultSet';
+    protected static $_class = 'Elastica\\SearchResultSet';
 
     /**
      * Results.
@@ -88,7 +88,7 @@ class ResultSet implements \Iterator, \Countable, \ArrayAccess
      * @param Response $response
      * @param Query    $query
      *
-     * @return ResultSet
+     * @return SearchResultSet
      */
     public static function create(Response $response, Query $query)
     {

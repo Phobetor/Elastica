@@ -3,7 +3,7 @@ namespace Elastica\Test;
 
 use Elastica\Document;
 use Elastica\Query;
-use Elastica\ResultSet;
+use Elastica\SearchResultSet;
 use Elastica\Scroll;
 use Elastica\Search;
 
@@ -19,7 +19,7 @@ class ScrollTest extends Base
         $scroll = new Scroll($this->_prepareSearch());
         $count = 1;
 
-        /** @var ResultSet $resultSet */
+        /** @var SearchResultSet $resultSet */
         foreach ($scroll as $scrollId => $resultSet) {
             $this->assertNotEmpty($scrollId);
 

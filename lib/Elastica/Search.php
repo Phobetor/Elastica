@@ -428,9 +428,9 @@ class Search
      * @param mixed     $query
      * @param int|array $options OPTIONAL Limit or associative array of options (option=>value)
      *
-     * @throws \Elastica\Exception\InvalidException
+     * @return \Elastica\SearchResultSet
+     *@throws \Elastica\Exception\InvalidException
      *
-     * @return \Elastica\ResultSet
      */
     public function search($query = '', $options = null)
     {
@@ -456,14 +456,14 @@ class Search
             $params
         );
 
-        return ResultSet::create($response, $query);
+        return SearchResultSet::create($response, $query);
     }
 
     /**
      * @param mixed $query
      * @param $fullResult (default = false) By default only the total hit count is returned. If set to true, the full ResultSet including aggregations is returned.
      *
-     * @return int|ResultSet
+     * @return int|SearchResultSet
      */
     public function count($query = '', $fullResult = false)
     {
@@ -478,7 +478,7 @@ class Search
             $query->toArray(),
             array(self::OPTION_SEARCH_TYPE => self::OPTION_SEARCH_TYPE_COUNT)
         );
-        $resultSet = ResultSet::create($response, $query);
+        $resultSet = SearchResultSet::create($response, $query);
 
         return $fullResult ? $resultSet : $resultSet->getTotalHits();
     }

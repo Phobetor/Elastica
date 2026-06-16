@@ -3,7 +3,7 @@ namespace Elastica\Test\Transport;
 
 use Elastica\Document;
 use Elastica\Query;
-use Elastica\ResultSet;
+use Elastica\SearchResultSet;
 use Elastica\Test\Base as BaseTest;
 
 class HttpTest extends BaseTest
@@ -219,7 +219,7 @@ class HttpTest extends BaseTest
         $this->assertEquals(0, $resultSet->getTotalHits());
 
         $response = $index->request('/_search', 'POST');
-        $resultSet = new ResultSet($response, Query::create(array()));
+        $resultSet = new SearchResultSet($response, Query::create(array()));
 
         $this->assertEquals(1, $resultSet->getTotalHits());
     }

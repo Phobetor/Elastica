@@ -512,7 +512,7 @@ class SearchTest extends BaseTest
 
         $search->addIndex($index)->addType($type);
         $resultSet = $search->search();
-        $this->assertInstanceOf('Elastica\ResultSet', $resultSet);
+        $this->assertInstanceOf('Elastica\SearchResultSet', $resultSet);
         $this->assertCount(10, $resultSet);
         $this->assertEquals(11, $resultSet->getTotalHits());
 
@@ -548,7 +548,7 @@ class SearchTest extends BaseTest
         $this->assertEquals(1, $result1);
 
         $result2 = $search->count(new \Elastica\Query\MatchAll(), true);
-        $this->assertInstanceOf('\Elastica\ResultSet', $result2);
+        $this->assertInstanceOf('\Elastica\SearchResultSet', $result2);
         $this->assertEquals(1, $result2->getTotalHits());
     }
 
@@ -582,7 +582,7 @@ class SearchTest extends BaseTest
         $this->assertEquals('IndexMissingException', $exception->getElasticsearchException()->getExceptionName());
 
         $results = $search->search($query, array(Search::OPTION_SEARCH_IGNORE_UNAVAILABLE => true));
-        $this->assertInstanceOf('\Elastica\ResultSet', $results);
+        $this->assertInstanceOf('\Elastica\SearchResultSet', $results);
     }
 
     /**

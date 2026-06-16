@@ -4,7 +4,7 @@ namespace Elastica\Test\Exception;
 use Elastica\Document;
 use Elastica\Exception\PartialShardFailureException;
 use Elastica\Query;
-use Elastica\ResultSet;
+use Elastica\SearchResultSet;
 
 class PartialShardFailureExceptionTest extends AbstractExceptionTest
 {
@@ -48,7 +48,7 @@ class PartialShardFailureExceptionTest extends AbstractExceptionTest
 
             $this->fail('PartialShardFailureException should have been thrown');
         } catch (PartialShardFailureException $e) {
-            $resultSet = new ResultSet($e->getResponse(), $query);
+            $resultSet = new SearchResultSet($e->getResponse(), $query);
             $this->assertEquals(0, count($resultSet->getResults()));
         }
     }
