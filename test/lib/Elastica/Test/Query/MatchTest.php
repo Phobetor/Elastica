@@ -336,4 +336,39 @@ class MatchTest extends BaseTest
         $match2->setField('field', 'values');
         $this->assertEquals($match1->toArray(), $match2->toArray());
     }
+
+    /**
+     * @group functional
+     */
+    public function testOldObject()
+    {
+        if (version_compare(phpversion(), 8, '>=')) {
+            self::markTestSkipped('These objects are not supported in PHP 8');
+        }
+
+        $client = $this->_getClient();
+        $index = $client->getIndex('test');
+        $index->create(array(), true);
+        $type = $index->getType('test');
+
+        $type->addDocuments(array(
+            new Document(1, array('name' => 'Basel-Stadt')),
+            new Document(2, array('name' => 'New York')),
+            new Document(3, array('name' => 'New Hampshire')),
+            new Document(4, array('name' => 'Basel Land')),
+        ));
+
+        $index->refresh();
+
+        $field = 'name';
+        $type = 'phrase_prefix';
+
+        $query = new \Elastica\Query\Match();
+        $query->setFieldQuery($field, 'New');
+        $query->setFieldType($field, $type);
+
+        $resultSet = $index->search($query);
+
+        $this->assertEquals(2, $resultSet->count());
+    }
 }
