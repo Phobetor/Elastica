@@ -59,13 +59,15 @@ class SearchResultSet implements \Iterator, \ArrayAccess, \Countable
         $responseData = $response->getData();
 
         if (isset($responseData['responses']) && is_array($responseData['responses'])) {
-            reset($searches);
+            $searchesIterator = ArrayIterator($searches);
+            $searchesIterator->rewind();
             foreach ($responseData['responses'] as $key => $responseData) {
-                $currentSearch = each($searches);
-
-                if ($currentSearch === false) {
+                if (!$searchesIterator->valid()) {
                     throw new InvalidException('No result found for search #'.$key);
-                } elseif (!$currentSearch['value'] instanceof BaseSearch) {
+                }
+
+                $currentSearch = $searchesIterator->current();
+                if (!$currentSearch['value'] instanceof BaseSearch) {
                     throw new InvalidException('Invalid object for search #'.$key.' provided. Should be Elastica\Search');
                 }
 
@@ -74,6 +76,8 @@ class SearchResultSet implements \Iterator, \ArrayAccess, \Countable
 
                 $response = new Response($responseData);
                 $this->_resultSets[$currentSearch['key']] = new BaseResultSet($response, $query);
+
+                $searchesIterator->next();
             }
         }
     }
