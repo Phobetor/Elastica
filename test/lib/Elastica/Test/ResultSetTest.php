@@ -24,7 +24,7 @@ class ResultSetTest extends BaseTest
 
         $resultSet = $type->search('elastica search');
 
-        $this->assertInstanceOf('Elastica\SearchResultSet', $resultSet);
+        $this->assertInstanceOf('Elastica\ResultSet', $resultSet);
         $this->assertEquals(3, $resultSet->getTotalHits());
         $this->assertGreaterThan(0, $resultSet->getMaxScore());
         $this->assertInternalType('array', $resultSet->getResults());
@@ -48,7 +48,7 @@ class ResultSetTest extends BaseTest
 
         $resultSet = $type->search('elastica search');
 
-        $this->assertInstanceOf('Elastica\SearchResultSet', $resultSet);
+        $this->assertInstanceOf('Elastica\ResultSet', $resultSet);
         $this->assertInstanceOf('Elastica\Result', $resultSet[0]);
         $this->assertInstanceOf('Elastica\Result', $resultSet[1]);
         $this->assertInstanceOf('Elastica\Result', $resultSet[2]);

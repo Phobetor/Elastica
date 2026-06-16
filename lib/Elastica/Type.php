@@ -342,7 +342,7 @@ class Type implements SearchableInterface
      * @param string|array|\Elastica\Query $query   Array with all query data inside or a Elastica\Query object
      * @param int|array                    $options OPTIONAL Limit or associative array of options (option=>value)
      *
-     * @return \Elastica\SearchResultSet with all results inside
+     * @return \Elastica\ResultSet with all results inside
      *
      * @see \Elastica\SearchableInterface::search
      */
@@ -509,7 +509,7 @@ class Type implements SearchableInterface
      * @param array                        $params OPTIONAL Additional arguments for the query
      * @param string|array|\Elastica\Query $query  OPTIONAL Query to filter the moreLikeThis results
      *
-     * @return \Elastica\SearchResultSet ResultSet with all results inside
+     * @return \Elastica\ResultSet ResultSet with all results inside
      *
      * @link http://www.elastic.co/guide/en/elasticsearch/reference/current/search-more-like-this.html
      */
@@ -521,7 +521,7 @@ class Type implements SearchableInterface
 
         $response = $this->request($path, Request::GET, $query->toArray(), $params);
 
-        return SearchResultSet::create($response, $query);
+        return ResultSet::create($response, $query);
     }
 
     /**

@@ -135,7 +135,7 @@ class Search
     }
 
     /**
-     * @return \Elastica\Multi\SearchResultSet
+     * @return \Elastica\Multi\ResultSet
      */
     public function search()
     {
@@ -148,7 +148,7 @@ class Search
             $this->_options
         );
 
-        return new SearchResultSet($response, $this->getSearches());
+        return new ResultSet($response, $this->getSearches());
     }
 
     /**

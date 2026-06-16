@@ -26,7 +26,7 @@ class Scroll implements \Iterator
     protected $_nextScrollId = null;
 
     /**
-     * @var null|SearchResultSet
+     * @var null|ResultSet
      */
     protected $_currentResultSet = null;
 
@@ -56,7 +56,7 @@ class Scroll implements \Iterator
      *
      * @link http://php.net/manual/en/iterator.current.php
      *
-     * @return SearchResultSet
+     * @return ResultSet
      */
     public function current()
     {
@@ -132,9 +132,9 @@ class Scroll implements \Iterator
     /**
      * Prepares Scroll for next request.
      *
-     * @param SearchResultSet $resultSet
+     * @param ResultSet $resultSet
      */
-    protected function _setScrollId(SearchResultSet $resultSet)
+    protected function _setScrollId(ResultSet $resultSet)
     {
         $this->_currentResultSet = $resultSet;
 

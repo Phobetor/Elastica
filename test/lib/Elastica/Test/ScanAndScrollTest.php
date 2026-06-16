@@ -3,7 +3,7 @@ namespace Elastica\Test;
 
 use Elastica\Document;
 use Elastica\Query;
-use Elastica\SearchResultSet;
+use Elastica\ResultSet;
 use Elastica\ScanAndScroll;
 use Elastica\Search;
 use Elastica\Test\Base as BaseTest;
@@ -20,7 +20,7 @@ class ScanAndScrollTest extends BaseTest
         $scanAndScroll = new ScanAndScroll($this->_prepareSearch(), '1m', 2);
         $docCount = 0;
 
-        /** @var SearchResultSet $resultSet */
+        /** @var ResultSet $resultSet */
         foreach ($scanAndScroll as $scrollId => $resultSet) {
             $docCount += $resultSet->count();
         }

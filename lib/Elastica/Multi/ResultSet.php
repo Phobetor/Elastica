@@ -3,7 +3,7 @@ namespace Elastica\Multi;
 
 use Elastica\Exception\InvalidException;
 use Elastica\Response;
-use Elastica\SearchResultSet as BaseResultSet;
+use Elastica\ResultSet as BaseResultSet;
 use Elastica\Search as BaseSearch;
 
 /**
@@ -12,12 +12,12 @@ use Elastica\Search as BaseSearch;
  *
  * @author munkie
  */
-class SearchResultSet implements \Iterator, \ArrayAccess, \Countable
+class ResultSet implements \Iterator, \ArrayAccess, \Countable
 {
     /**
      * Result Sets.
      *
-     * @var array|\Elastica\SearchResultSet[] Result Sets
+     * @var array|\Elastica\ResultSet[] Result Sets
      */
     protected $_resultSets = array();
 
@@ -83,7 +83,7 @@ class SearchResultSet implements \Iterator, \ArrayAccess, \Countable
     }
 
     /**
-     * @return array|\Elastica\SearchResultSet[]
+     * @return array|\Elastica\ResultSet[]
      */
     public function getResultSets()
     {
@@ -117,7 +117,7 @@ class SearchResultSet implements \Iterator, \ArrayAccess, \Countable
     }
 
     /**
-     * @return bool|\Elastica\SearchResultSet
+     * @return bool|\Elastica\ResultSet
      */
     public function current()
     {
